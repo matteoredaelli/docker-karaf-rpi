@@ -1,8 +1,9 @@
 Copied from https://github.com/mkroli/karaf-docker
 and adapted for Raspberry PI (archlinux)
 
-docker build -t matteoredaelli/docker-docker-rpi .
+docker build -t matteoredaelli/docker-karaf-rpi .
 
+``
 docker run -d -t \
   --name karaf \
   -p 1099:1099 \
@@ -11,3 +12,4 @@ docker run -d -t \
   -v /apps/karaf-share:/apps/karaf-share \
   --restart=on-failure:100 \
   matteoredaelli/docker-karaf-rpi
+``
