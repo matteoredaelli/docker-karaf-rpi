@@ -6,10 +6,12 @@ ENV INITSYSTEM on
 MAINTAINER matteoredaelli
 
 RUN echo "APT::Get::Install-Recommends \"false\";" >> /etc/apt/apt.conf.d/99local; \
-    echo "APT::Get::Install-Sugegsts \"false\";" >> /etc/apt/apt.conf.d/99local; \
-    apt-get update; \
-    apt-get --yes --force-yes --no-install-suggests install openjdk-7-jdk; \
-    apt-get clean
+    echo "APT::Get::Install-Sugegsts \"false\";" >> /etc/apt/apt.conf.d/99local;
+
+RUN apt-get update \
+    && apt-get -y --force-yes --no-install-suggests install openjdk-7-jdk \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
 
 RUN useradd -c 'r user' -m -d /home/r -s /bin/bash r
 USER r
